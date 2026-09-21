@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Unayurved — Virgin Coconut Oil 500ml — Back Label</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
+
+  @page {
+    size: 75mm 115mm;
+    margin: 0;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    width: 75mm;
+    height: 115mm;
+    background: #FEFCF3;
+    overflow: hidden;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 6.5pt;
+    color: #1A1A18;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .label {
+    width: 75mm;
+    height: 115mm;
+    display: flex;
+    flex-direction: column;
+    padding: 4mm 4.5mm 4mm;
+    background: #FEFCF3;
+    position: relative;
+    gap: 1.8mm;
+  }
+
+  .label::before {
+    content: '';
+    position: absolute;
+    inset: 1.5mm;
+    border: 0.3mm solid #1C6B1C;
+    pointer-events: none;
+  }
+
+  /* ── Section header ───────────────────────────────── */
+  .section-title {
+    font-size: 5pt;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #1C6B1C;
+    margin-bottom: 0.8mm;
+  }
+
+  /* ── Back label product name (top) ───────────────── */
+  .back-product-name {
+    font-size: 8pt;
+    font-weight: 500;
+    color: #1A1A18;
+    letter-spacing: 0.04em;
+    text-align: center;
+    padding-bottom: 1.5mm;
+    border-bottom: 0.3mm solid #1C6B1C;
+  }
+
+  /* ── Divider ──────────────────────────────────────── */
+  .divider {
+    height: 0.2mm;
+    background: #C8BFA0;
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  /* ── Text blocks ──────────────────────────────────── */
+  .block {
+    flex-shrink: 0;
+  }
+
+  .text-sm {
+    font-size: 6.5pt;
+    line-height: 1.35;
+    color: #1A1A18;
+  }
+
+  .text-xs {
+    font-size: 5.8pt;
+    line-height: 1.3;
+    color: #5C5C52;
+  }
+
+  /* ── Nutrition table ──────────────────────────────── */
+  .nutrition-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 5.8pt;
+  }
+
+  .nutrition-table thead th {
+    font-size: 5pt;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1C6B1C;
+    padding: 0.5mm 0;
+    border-bottom: 0.3mm solid #1C6B1C;
+    text-align: left;
+  }
+
+  .nutrition-table thead th:last-child {
+    text-align: right;
+  }
+
+  .nutrition-table tbody td {
+    padding: 0.6mm 0;
+    border-bottom: 0.15mm solid #C8BFA0;
+    color: #1A1A18;
+    font-size: 5.8pt;
+    vertical-align: middle;
+  }
+
+  .nutrition-table tbody td:last-child {
+    text-align: right;
+    color: #5C5C52;
+  }
+
+  .nutrition-table tr.sub-row td:first-child {
+    padding-left: 3mm;
+    color: #5C5C52;
+  }
+
+  /* ── Regulatory footer block ──────────────────────── */
+  .reg-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8mm;
+    flex-shrink: 0;
+  }
+
+  .reg-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2mm;
+  }
+
+  .reg-field {
+    font-size: 5.8pt;
+    color: #1A1A18;
+    line-height: 1.3;
+  }
+
+  .reg-field span {
+    color: #5C5C52;
+  }
+
+  /* placeholder underline fields */
+  .blank {
+    display: inline-block;
+    min-width: 18mm;
+    border-bottom: 0.2mm solid #5C5C52;
+    height: 3mm;
+    vertical-align: bottom;
+  }
+
+  .blank-sm {
+    display: inline-block;
+    min-width: 10mm;
+    border-bottom: 0.2mm solid #5C5C52;
+    height: 3mm;
+    vertical-align: bottom;
+  }
+
+  /* ── FSSAI row ────────────────────────────────────── */
+  .fssai-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5mm;
+    font-size: 5.8pt;
+  }
+
+  .fssai-logo {
+    width: 8mm;
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  /* ── Green dot (veg symbol) ───────────────────────── */
+  .veg-symbol {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4mm;
+    height: 4mm;
+    border: 0.4mm solid #1C6B1C;
+    flex-shrink: 0;
+  }
+
+  .veg-dot {
+    width: 2mm;
+    height: 2mm;
+    border-radius: 50%;
+    background: #1C6B1C;
+  }
+
+  /* ── Barcode placeholder ──────────────────────────── */
+  .barcode-placeholder {
+    width: 18mm;
+    height: 10mm;
+    border: 0.3mm solid #C8BFA0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: white;
+  }
+
+  .barcode-placeholder span {
+    font-size: 4pt;
+    color: #C8BFA0;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ── Bottom symbols row ───────────────────────────── */
+  .symbols-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  /* ── Heritage line ────────────────────────────────── */
+  .heritage-line {
+    font-size: 5.5pt;
+    color: #1C6B1C;
+    text-align: center;
+    font-style: italic;
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+<div class="label">
+
+  <!-- Product name header -->
+  <div class="back-product-name">Virgin Coconut Oil</div>
+
+  <!-- Ingredients -->
+  <div class="block">
+    <div class="section-title">Ingredients</div>
+    <p class="text-sm">100% Cold Pressed Virgin Coconut Oil</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Nutritional information -->
+  <div class="block">
+    <div class="section-title">Nutritional Information &nbsp;(per 100 ml)</div>
+    <table class="nutrition-table">
+      <thead>
+        <tr>
+          <th>Nutrient</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Energy</td><td>884 kcal / 3696 kJ</td></tr>
+        <tr><td>Total Fat</td><td>100 g</td></tr>
+        <tr class="sub-row"><td>— Saturated Fat</td><td>91 g</td></tr>
+        <tr class="sub-row"><td>— MUFA</td><td>6 g</td></tr>
+        <tr class="sub-row"><td>— PUFA</td><td>3 g</td></tr>
+        <tr class="sub-row"><td>— Trans Fat</td><td>0 g</td></tr>
+        <tr><td>Cholesterol</td><td>0 mg</td></tr>
+        <tr><td>Total Carbohydrates</td><td>0 g</td></tr>
+        <tr class="sub-row"><td>— Total Sugars</td><td>0 g</td></tr>
+        <tr><td>Protein</td><td>0 g</td></tr>
+        <tr><td>Sodium</td><td>0 mg</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Storage & Usage -->
+  <div class="block">
+    <p class="text-xs"><strong>Storage:</strong> Store in a cool, dry place away from direct sunlight.</p>
+    <p class="text-xs"><strong>Usage:</strong> Suitable for cooking, hair and skin care.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Manufacturer -->
+  <div class="block">
+    <div class="section-title">Manufactured &amp; Packed by</div>
+    <p class="text-xs">Unayurved</p>
+    <p class="text-xs" style="color:#5C5C52"><span class="blank"></span></p>
+  </div>
+
+  <!-- FSSAI -->
+  <div class="fssai-row">
+    <svg class="fssai-logo" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+      <rect width="120" height="40" rx="3" fill="#E8F5E9" stroke="#1C6B1C" stroke-width="1.5"/>
+      <text x="60" y="16" font-family="DM Sans, sans-serif" font-size="9" font-weight="600" fill="#1C6B1C" text-anchor="middle">FSSAI</text>
+      <text x="60" y="28" font-family="DM Sans, sans-serif" font-size="6" fill="#5C5C52" text-anchor="middle">Food Safety &amp; Standards</text>
+      <text x="60" y="37" font-family="DM Sans, sans-serif" font-size="5" fill="#5C5C52" text-anchor="middle">Authority of India</text>
+    </svg>
+    <div class="reg-field">Lic. No.: <span class="blank"></span></div>
+  </div>
+
+  <!-- Dates / Batch / MRP / Customer Care -->
+  <div class="reg-block">
+    <div class="reg-row">
+      <div class="reg-field">Mfg. Date: <span class="blank-sm"></span></div>
+      <div class="reg-field">Best Before: <span class="blank-sm"></span></div>
+    </div>
+    <div class="reg-row">
+      <div class="reg-field">Batch No.: <span class="blank-sm"></span></div>
+      <div class="reg-field">MRP: ₹<span class="blank-sm"></span> <span style="color:#5C5C52;font-size:5pt">(incl. all taxes)</span></div>
+    </div>
+    <div class="reg-field">Customer Care: <span class="blank"></span></div>
+    <div class="reg-field">Country of Origin: <strong>India</strong> &nbsp;|&nbsp; Net Qty: <strong>500 ml</strong></div>
+  </div>
+
+  <!-- Bottom row: veg symbol + barcode -->
+  <div class="symbols-row">
+    <div style="display:flex;align-items:center;gap:1.5mm;">
+      <div class="veg-symbol"><div class="veg-dot"></div></div>
+      <span class="text-xs">Vegetarian</span>
+    </div>
+    <div class="barcode-placeholder"><span>Barcode</span></div>
+  </div>
+
+  <!-- Heritage line -->
+  <div class="heritage-line">Rooted in Unani &amp; Ayurvedic tradition</div>
+
+</div>
+</body>
+</html>

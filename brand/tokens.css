@@ -1,0 +1,25 @@
+/* =============================================================
+   UNAYURVED — Brand Tokens
+   Single source of truth for all label variants and future assets.
+   Every label, website component, and social template imports this.
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500&display=swap');
+
+:root {
+  /* --- Colors --- */
+  --color-bg:         #FEFCF3;  /* warm white — label background */
+  --color-primary:    #1C6B1C;  /* deep forest green — logo, headings, borders */
+  --color-text:       #1A1A18;  /* near-black — all primary body text */
+  --color-text-light: #5C5C52;  /* warm grey — secondary / regulatory text */
+  --color-divider:    #C8BFA0;  /* warm sand — ruled lines, table borders */
+
+  /* --- Typography --- */
+  --font-display:     'Cormorant Garamond', Georgia, serif;
+  --font-body:        'DM Sans', system-ui, sans-serif;
+  --font-regulatory:  'DM Sans', system-ui, sans-serif; /* same family, smaller size */
+
+  /* --- Logo --- */
+  --logo-min-width:   40mm;     /* never render logo smaller than this on labels */
+  --logo-clear-space: 4mm;      /* minimum clear space around logo on all sides */
+}

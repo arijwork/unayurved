@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Unayurved — Virgin Coconut Oil 500ml — Front Label</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500&display=swap');
+
+  /* ── Print dimensions ─────────────────────────────── */
+  @page {
+    size: 75mm 115mm;
+    margin: 0;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    width: 75mm;
+    height: 115mm;
+    background: #FEFCF3;
+    overflow: hidden;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Label shell ──────────────────────────────────── */
+  .label {
+    width: 75mm;
+    height: 115mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7mm 5mm 6mm;
+    background: #FEFCF3;
+    position: relative;
+  }
+
+  /* thin green border inset 1.5mm from edge */
+  .label::before {
+    content: '';
+    position: absolute;
+    inset: 1.5mm;
+    border: 0.3mm solid #1C6B1C;
+    pointer-events: none;
+  }
+
+  /* ── Logo block ───────────────────────────────────── */
+  .logo-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    flex: 0 0 auto;
+  }
+
+  .logo-img {
+    width: 48mm;
+    height: auto;
+    display: block;
+  }
+
+  /* ── Divider ──────────────────────────────────────── */
+  .divider {
+    width: 100%;
+    height: 0.3mm;
+    background: #1C6B1C;
+    flex: 0 0 auto;
+  }
+
+  .divider-light {
+    width: 42mm;
+    height: 0.2mm;
+    background: #C8BFA0;
+    flex: 0 0 auto;
+  }
+
+  /* ── Product name ─────────────────────────────────── */
+  .product-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500;
+    font-size: 17pt;
+    line-height: 1.1;
+    color: #1A1A18;
+    text-align: center;
+    letter-spacing: 0.01em;
+    flex: 0 0 auto;
+  }
+
+  /* ── Claims ───────────────────────────────────────── */
+  .claims {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 5.5pt;
+    color: #5C5C52;
+    text-align: center;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    flex: 0 0 auto;
+  }
+
+  /* ── Net quantity ─────────────────────────────────── */
+  .quantity {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 7.5pt;
+    color: #1A1A18;
+    text-align: center;
+    letter-spacing: 0.06em;
+    flex: 0 0 auto;
+  }
+</style>
+</head>
+<body>
+<div class="label">
+
+  <div class="logo-block">
+    <img class="logo-img" src="../../brand/assets/logo-primary.png" alt="Unayurved">
+  </div>
+
+  <div class="divider"></div>
+
+  <p class="product-name">Virgin<br>Coconut Oil</p>
+
+  <div class="divider-light"></div>
+
+  <p class="claims">Cold Pressed &nbsp;·&nbsp; Unrefined &nbsp;·&nbsp; Chemical Free</p>
+
+  <div class="divider"></div>
+
+  <p class="quantity">Net Qty: 500 ml</p>
+
+</div>
+</body>
+</html>
