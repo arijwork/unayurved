@@ -9,6 +9,13 @@ Full workflow from brief to print-ready Canva design for a new product SKU.
 
 **Read first:** `brand/label-design-system.md`, `brand/canva-ai-prompt-template.md`, `brand/canva-mcp-workflow.md`.
 
+**Reference examples:** `brand/examples/` contains three complete prompts from the first product cycle:
+- `coconut-oil-front-prompt.md` — the approved front label prompt (printed and confirmed)
+- `coconut-oil-back-prompt.md` — the back label prompt + notes on content budget and MCP fixes applied
+- `rose-water-front-prompt.md` — shows exactly how the template adapts for a second product (accent colour, botanical, claim)
+
+Read the relevant example before writing a new product prompt — don't reconstruct from the template alone.
+
 ---
 
 ## Step 1 — Fill the product brief

@@ -9,6 +9,8 @@ Creates a correctly formatted Canva design at a new label size from an approved 
 
 **Read first:** `brand/label-design-system.md` (dimensions, scale factors, typography minimums) and `brand/canva-mcp-workflow.md` (transaction pattern, coordinate system, known pitfalls).
 
+**Reference examples:** `brand/examples/coconut-oil-back-prompt.md` contains notes on what breaks after resize and the MCP fixes that were applied — read it to understand what to audit.
+
 ---
 
 ## Inputs required
