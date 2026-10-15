@@ -130,9 +130,9 @@ Apply position, font-size, and content fixes in one transaction per page.
 
 **For every text element where font < minimum:**
 ```json
-{ "type": "format_text", "locator_id": "<id>", "fontSize": 10 }
+{ "type": "format_text", "locator_id": "<id>", "formatting": { "font_size": 10 } }
 ```
-*(Use 10 for 200ml, 12 for 100ml)*
+*(Use 10 for 200ml, 12 for 100ml. The property inside `formatting` is `font_size` with underscore — camelCase `fontSize` is silently ignored.)*
 
 **For column header positioning (Nutrient + Per 100 ml):**
 ```json
