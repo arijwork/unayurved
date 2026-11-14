@@ -1,0 +1,41 @@
+[
+ {
+  "month": "Month 1",
+  "target": 1500,
+  "amazonBasis": "No ads, no reviews: half of a typical listing",
+  "amazonBottles": 204,
+  "amazonProfit": 16912,
+  "distributorBottles": 1296,
+  "distributorProfit40": 39168,
+  "distributorProfit60": 119088,
+  "totalProfit40": 56080,
+  "totalProfit60": 136000,
+  "stockCost": 150333
+ },
+ {
+  "month": "Month 2",
+  "target": 4500,
+  "amazonBasis": "First reviews: a typical listing",
+  "amazonBottles": 407,
+  "amazonProfit": 33823,
+  "distributorBottles": 4093,
+  "distributorProfit40": 123700,
+  "distributorProfit60": 376101,
+  "totalProfit40": 157523,
+  "totalProfit60": 409924,
+  "stockCost": 451000
+ },
+ {
+  "month": "Month 3",
+  "target": 10000,
+  "amazonBasis": "Ads running: the tenth-best seller",
+  "amazonBottles": 740,
+  "amazonProfit": 61555,
+  "distributorBottles": 9260,
+  "distributorProfit40": 279858,
+  "distributorProfit60": 850891,
+  "totalProfit40": 341413,
+  "totalProfit60": 912446,
+  "stockCost": 1002222
+ }
+]
