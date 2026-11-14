@@ -1,0 +1,75 @@
+{
+  "note": "Purchase costs given by the founder on 2026-11-11. Per-litre figures are for the liquid only; bottle, cap and label costs are still to come.",
+  "oil_cost_per_litre_inr": {
+    "Neem Oil": 200,
+    "Castor Oil": 210,
+    "Kalonji Oil": 1150,
+    "Olive Oil": 250,
+    "Virgin Coconut Oil": 380,
+    "Til (Sesame) Oil": 350,
+    "Til (Sesame) Oil, non-edible": 220,
+    "Rose Water": 160
+  },
+  "qualifiers": {
+    "Olive Oil": "pomace",
+    "Virgin Coconut Oil": "cold pressed",
+    "Til (Sesame) Oil": "edible grade; a non-edible grade is available at the lower price"
+  },
+  "packaging_inr": {
+    "note": "Given 2026-11-11. Bottles are plastic. The 500 ml bottle is filled with 400 ml. 100 ml label confirmed at 6.25.",
+    "100 ml": {
+      "fill_ml": 100,
+      "bottle_and_cap": 8,
+      "label": 6.25
+    },
+    "200 ml": {
+      "fill_ml": 200,
+      "bottle_and_cap": 10,
+      "label": 8
+    },
+    "500 ml bottle": {
+      "fill_ml": 400,
+      "bottle_and_cap": 15,
+      "label": 15
+    }
+  },
+  "gst": "GST registered. All costs given are inclusive of GST.",
+  "fulfilment": "Not FBA to start: each order is packed and handed over from the founders' own space.",
+  "volume_goal": "About 10,000 bottles a month across 100, 200 and 400 ml, within 3 months, across all channels (online and distributors). A rough aim, not a fixed plan.",
+  "til_positioning": "Undecided between edible and non-edible.",
+  "not_yet_known": [
+    "outer shipping box and tape cost per order (founder pays; amount unknown)",
+    "transport",
+    "packing labour (currently done by the two founders)"
+  ],
+  "context": "Two-person startup; founders do all the work themselves. Strategy should be generic to online platforms, built on Amazon data first. No marketing spend assumed yet.",
+  "distributor_terms": "Hypothetical: a distributor would ask for 60% of MRP. Read as the distributor keeping 60% and the brand receiving 40%; to be confirmed.",
+  "current_shop_prices_inr": {
+    "note": "Prices in production and being tested in the partner's shop, given 2026-11-11. Treated as the printed MRP.",
+    "Castor Oil": {
+      "100 ml": 159
+    },
+    "Til (Sesame) Oil": {
+      "100 ml": 159
+    },
+    "Kalonji Oil": {
+      "100 ml": 389
+    },
+    "Neem Oil": {
+      "100 ml": 159
+    },
+    "Olive Oil": {
+      "100 ml": 199
+    },
+    "Virgin Coconut Oil": {
+      "100 ml": 159,
+      "200 ml": 259,
+      "400 ml": 459
+    },
+    "Rose Water": {
+      "100 ml": 110,
+      "200 ml": 200,
+      "400 ml": 310
+    }
+  }
+}

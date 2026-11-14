@@ -1,0 +1,631 @@
+<meta name="dash-one-writer">
+<style>
+  .ms { container-type: inline-size; display: flex; flex-direction: column; gap: var(--cds-gap-xl); font-family: var(--font-anthropic-sans); color: var(--color-fg); font-size: var(--cds-font-size-body); }
+  .ms-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+  .ms-lede { margin: var(--cds-gap-sm) 0 0; max-width: 68ch; line-height: 1.5; }
+  .ms-h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; text-wrap: balance; }
+  .ms-sub { color: var(--color-fg-muted); margin: var(--cds-gap-xs) 0 0; max-width: 68ch; line-height: 1.45; }
+  .ms-sec { display: flex; flex-direction: column; gap: var(--cds-gap-md); }
+  .ms-num { font-variant-numeric: tabular-nums; }
+
+  .ms-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--cds-gap-md); }
+  .ms-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-xs); min-width: 0; }
+  .ms-tile-label { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+  .ms-tile-big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 1.9rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .ms-tile-note { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); line-height: 1.4; }
+  .ms-tile-key { border-color: var(--color-fg); }
+
+  .ms-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; padding: 0; list-style: none; }
+  .ms-legend li { display: flex; align-items: center; gap: 6px; }
+  .ms-sw { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+
+  .ms-flow { position: relative; display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-height: 260px; }
+  .ms-flow-row { display: grid; grid-template-columns: 9.5em minmax(0, 1fr) 5.5em; align-items: center; gap: var(--cds-gap-sm); }
+  .ms-flow-name { min-width: 0; }
+  .ms-flow-track { display: flex; height: 22px; min-width: 0; }
+  .ms-flow-seg { height: 100%; min-width: 0; border: 0; padding: 0; cursor: default; outline-offset: 2px; }
+  .ms-flow-seg + .ms-flow-seg { margin-left: 1px; }
+  .ms-flow-total { text-align: right; font-variant-numeric: tabular-nums; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+  .ms-tip { position: absolute; z-index: 2; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); box-shadow: var(--cds-shadow-popover); border-radius: var(--cds-radius); padding: 6px 10px; font-size: var(--cds-font-size-caption); max-width: 240px; line-height: 1.4; }
+  .ms-tip b { font-weight: var(--cds-font-weight-medium); }
+  .ms-tip span { color: var(--cds-text-secondary); }
+  @container (max-width: 520px) {
+    .ms-flow-row { grid-template-columns: minmax(0, 1fr) auto; }
+    .ms-flow-name { grid-column: 1; grid-row: 1; }
+    .ms-flow-total { grid-column: 2; grid-row: 1; }
+    .ms-flow-track { grid-column: 1 / -1; grid-row: 2; }
+  }
+
+  .ms-scroll { overflow-x: auto; }
+  .ms-table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); }
+  .ms-table th, .ms-table td { padding: 7px 10px; text-align: left; border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+  .ms-table th { color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); white-space: nowrap; }
+  .ms-table .ms-r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .ms-table .ms-strong { font-weight: var(--cds-font-weight-medium); color: var(--color-fg); }
+  .ms-prod { min-width: 240px; max-width: 420px; }
+  .ms-prod a { color: inherit; text-decoration: underline; text-decoration-color: var(--color-border-line); text-underline-offset: 2px; }
+  .ms-prod a:hover { text-decoration-color: currentColor; }
+  .ms-prod-title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .ms-prod-brand { color: var(--color-fg-muted); }
+  .ms-pill { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .ms-why { color: var(--color-fg-muted); min-width: 240px; }
+
+  .ms-controls { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; }
+  .ms-search { font: inherit; color: inherit; background: var(--color-bg); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 6px 10px; min-width: 0; flex: 1 1 180px; max-width: 320px; }
+  .ms-panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--cds-gap-md); }
+  .ms-panel { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-md); min-width: 0; }
+  .ms-panel-h { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: 0; }
+  .ms-bars { display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-height: 200px; }
+  .ms-bar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px var(--cds-gap-sm); font-size: var(--cds-font-size-caption); }
+  .ms-bar-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ms-bar-val { font-variant-numeric: tabular-nums; color: var(--color-fg-muted); white-space: nowrap; }
+  .ms-bar-track { grid-column: 1 / -1; height: 6px; background: var(--color-border-line); border-radius: 3px; overflow: hidden; }
+  .ms-bar-fill { height: 100%; border-radius: 3px; }
+  .ms-empty { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+  .ms-count { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0; }
+  .ms-notes summary { cursor: pointer; font-weight: var(--cds-font-weight-medium); }
+  .ms-notes dl { margin: var(--cds-gap-md) 0 0; display: grid; grid-template-columns: minmax(8em, max-content) minmax(0, 1fr); gap: var(--cds-gap-sm) var(--cds-gap-md); max-width: 80ch; line-height: 1.45; }
+  .ms-notes dt { font-weight: var(--cds-font-weight-medium); }
+  .ms-notes dd { margin: 0; color: var(--color-fg-muted); }
+  @container (max-width: 520px) { .ms-notes dl { grid-template-columns: 1fr; gap: 2px; } .ms-notes dd { margin-bottom: var(--cds-gap-sm); } }
+  .ms-plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: var(--cds-gap-md); }
+  .ms-plan { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-width: 0; }
+  .ms-plan-h { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); margin: 0; }
+  .ms-plan-pick { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 1.35rem; line-height: 1.2; margin: 0; }
+  .ms-plan-skus { display: flex; flex-direction: column; gap: var(--cds-gap-sm); margin: 0; padding: 0; list-style: none; }
+  .ms-sku { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px var(--cds-gap-sm); align-items: baseline; }
+  .ms-sku-size { font-family: var(--font-anthropic-serif); font-size: 1.25rem; line-height: 1.2; }
+  .ms-sku-price { font-family: var(--font-anthropic-serif); font-size: 1.25rem; line-height: 1.2; font-variant-numeric: tabular-nums; }
+  .ms-sku-ctx { grid-column: 1 / -1; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.4; }
+  .ms-plan-later { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; }
+  .ms-plan-why { font-size: var(--cds-font-size-caption); line-height: 1.5; margin: 0; }
+  .ms-plan-why b { font-weight: var(--cds-font-weight-medium); font-variant-numeric: tabular-nums; }
+  .ms-packs { display: flex; flex-direction: column; gap: 6px; min-height: 120px; margin-block: var(--cds-gap-xs); }
+  .ms-pack { display: grid; grid-template-columns: 6.5em minmax(0, 1fr) 3.6em; align-items: center; gap: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); }
+  .ms-pack-name { color: var(--color-fg-muted); white-space: nowrap; }
+  .ms-pack-on .ms-pack-name { color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+  .ms-pack-track { height: 10px; }
+  .ms-pack-fill { height: 100%; border-radius: 2px; min-width: 1px; }
+  .ms-pack-val { text-align: right; font-variant-numeric: tabular-nums; color: var(--color-fg-muted); }
+  .ms-pack-on .ms-pack-val { color: var(--color-fg); }
+  [data-dash-source-state=refreshing] { opacity: .5; }
+</style>
+
+<div class="ms">
+  <header>
+    <h1 class="ms-title" id="page-title">Amazon true market size</h1>
+    <p class="ms-lede" id="takeaway">
+      The seven Helium 10 exports add up to ₹<b class="ms-num" data-draw="fig" data-source="totals" data-field="rawCr" data-row="0" data-fmt="cr">—</b> crore of monthly revenue.
+      Once repeat placements and products outside the category are removed, the core market is
+      ₹<b class="ms-num" data-draw="fig" data-source="totals" data-field="coreCr" data-row="0" data-fmt="cr">—</b> crore,
+      <b class="ms-num" data-draw="fig" data-source="totals" data-field="corePct" data-row="0" data-fmt="int">—</b>% of the raw figure.
+      Packs of 500 ml or less account for ₹<b class="ms-num" data-draw="fig" data-source="totals" data-field="core500Cr" data-row="0" data-fmt="cr">—</b> crore of that.
+    </p>
+  </header>
+
+  <section class="ms-tiles" id="headline-figures">
+    <div class="ms-tile" id="tile-raw">
+      <span class="ms-tile-label">Raw exports, per month</span>
+      <span class="ms-tile-big">₹<span data-draw="fig" data-source="totals" data-field="rawCr" data-row="0" data-fmt="cr">—</span> cr</span>
+      <span class="ms-tile-note"><span class="ms-num" data-draw="fig" data-source="totals" data-field="rawRows" data-row="0" data-fmt="int">—</span> rows across 7 files</span>
+    </div>
+    <div class="ms-tile" id="tile-dedup">
+      <span class="ms-tile-label">After removing duplicates</span>
+      <span class="ms-tile-big">₹<span data-draw="fig" data-source="totals" data-field="dedupCr" data-row="0" data-fmt="cr">—</span> cr</span>
+      <span class="ms-tile-note"><span class="ms-num" data-draw="fig" data-source="totals" data-field="dupRows" data-row="0" data-fmt="int">—</span> repeat placements and <span class="ms-num" data-draw="fig" data-source="totals" data-field="crossFile" data-row="0" data-fmt="int">—</span> products listed in two files removed</span>
+    </div>
+    <div class="ms-tile ms-tile-key" id="tile-core">
+      <span class="ms-tile-label">Core market, per month</span>
+      <span class="ms-tile-big">₹<span data-draw="fig" data-source="totals" data-field="coreCr" data-row="0" data-fmt="cr">—</span> cr</span>
+      <span class="ms-tile-note"><span class="ms-num" data-draw="fig" data-source="totals" data-field="coreListings" data-row="0" data-fmt="int">—</span> products, <span class="ms-num" data-draw="fig" data-source="totals" data-field="coreSelling" data-row="0" data-fmt="int">—</span> of them with sales</span>
+    </div>
+    <div class="ms-tile" id="tile-adjacent">
+      <span class="ms-tile-label">Core plus adjacent</span>
+      <span class="ms-tile-big">₹<span data-draw="fig" data-source="totals" data-field="coreAdjCr" data-row="0" data-fmt="cr">—</span> cr</span>
+      <span class="ms-tile-note">Adds blends, capsules, face washes and other formats of the same ingredient</span>
+    </div>
+  </section>
+
+  <section class="ms-sec" id="launch-plan">
+    <div>
+      <h2 class="ms-h2">Launch plan for your three bottles</h2>
+      <p class="ms-sub">Profit on one bottle two ways: packed by you and collected by Amazon, or sold through a distributor. It uses your purchase costs for the liquid, bottle and label, and compares your current shop prices with what each size sells for on Amazon today. All prices include GST.</p>
+    </div>
+    <div class="ms-scroll">
+      <table class="ms-table" id="economics-table" data-source="economics" data-row-key="sku">
+        <thead>
+          <tr>
+            <th data-field="sku">Product and fill</th>
+            <th data-field="verdict">Decision</th>
+            <th class="ms-r" data-field="shopPrice">Your shop price ₹</th>
+            <th class="ms-r" data-field="mrp">MRP to print ₹</th>
+            <th data-field="mrpStatus">MRP change</th>
+            <th class="ms-r" data-field="price">Amazon price ₹</th>
+            <th class="ms-r" data-field="gst">GST ₹</th>
+            <th class="ms-r" data-field="liquid">Liquid ₹</th>
+            <th class="ms-r" data-field="packaging">Bottle, label, box ₹</th>
+            <th class="ms-r" data-field="fees">Amazon fees ₹</th>
+            <th class="ms-r" data-field="profit">Profit per bottle, Amazon ₹</th>
+            <th class="ms-r" data-field="marginPct">% of price</th>
+            <th class="ms-r" data-field="distributorProfit">Distributor profit if you receive 40% of MRP ₹</th>
+            <th class="ms-r" data-field="distributorProfit60">Distributor profit if you receive 60% of MRP ₹</th>
+            <th data-field="why">Why</th>
+          </tr>
+        </thead>
+        <tbody data-draw="econ-rows"></tbody>
+      </table>
+    </div>
+    <div>
+      <h3 class="ms-panel-h">What monthly volume would earn</h3>
+      <p class="ms-sub">Bottles a month if each launch product sold like a competitor at that rank in its size today, and the profit that would leave before ads, returns and your own time.</p>
+    </div>
+    <div class="ms-scroll">
+      <table class="ms-table" id="targets-table" data-source="targets" data-row-key="scenario">
+        <thead>
+          <tr>
+            <th data-field="scenario">If each launch product sells like</th>
+            <th class="ms-r" data-field="bottles">Bottles a month</th>
+            <th class="ms-r" data-field="profit">Profit a month ₹</th>
+          </tr>
+        </thead>
+        <tbody data-draw="target-rows"></tbody>
+      </table>
+    </div>
+    <div>
+      <h3 class="ms-panel-h">A three-month path to 10,000 bottles</h3>
+      <p class="ms-sub">A hypothesis to set targets against. Amazon alone cannot carry the goal in three months, so most of each month has to come from distributors and shops, and what they pay you decides the profit.</p>
+    </div>
+    <div class="ms-scroll">
+      <table class="ms-table" id="ramp-table" data-source="ramp" data-row-key="month">
+        <thead>
+          <tr>
+            <th data-field="month">Month</th>
+            <th class="ms-r" data-field="target">Target bottles</th>
+            <th data-field="amazonBasis">Amazon assumption</th>
+            <th class="ms-r" data-field="amazonBottles">Amazon bottles</th>
+            <th class="ms-r" data-field="amazonProfit">Amazon profit ₹</th>
+            <th class="ms-r" data-field="distributorBottles">Distributor and shop bottles</th>
+            <th class="ms-r" data-field="totalProfit40">Total profit if you receive 40% of MRP ₹</th>
+            <th class="ms-r" data-field="totalProfit60">Total profit if you receive 60% of MRP ₹</th>
+            <th class="ms-r" data-field="stockCost">Stock to fund ₹</th>
+          </tr>
+        </thead>
+        <tbody data-draw="ramp-rows"></tbody>
+      </table>
+    </div>
+    <details class="ms-notes" id="plan-assumptions">
+      <summary>What these figures assume</summary>
+      <dl>
+        <dt>Your costs</dt><dd>Liquid cost per litre, and bottle, cap and label for the 100 ml, 200 ml and 500 ml bottle. The 500 ml bottle is filled with 400 ml. All were given including GST; because you are GST-registered, the GST inside them is treated as claimed back.</dd>
+        <dt>Assumed by me</dt><dd>₹10 per order for the outer box and packing material. GST on the sale at 5% for the oils and 18% for rose water. No advertising, no returns or breakage, and no cost for your own packing time.</dd>
+        <dt>Amazon fees</dt><dd>No referral fee, since Amazon charges none on oils and haircare priced up to ₹1,000. A closing fee of ₹3 up to ₹300, ₹24 up to ₹500 and ₹35 above that. Pickup and delivery at ₹55 a parcel, which assumes each plastic bottle weighs under 500 g once boxed; a packed 400 ml fill is close to that limit and would cost ₹75 if it goes over. These come from Amazon's public fee page and should be confirmed in Seller Central.</dd>
+        <dt>MRP and shop price</dt><dd>Your shop price is treated as the MRP printed on the label, and a product cannot be listed above its MRP. Keep: the printed MRP already leaves room for the Amazon price. Raise: the printed MRP is below what the size sells for on Amazon. New: no label yet, so the MRP is set about 25% above the Amazon price.</dd>
+        <dt>Distributor</dt><dd>Shown both ways, because "60% of MRP" can mean either: the distributor keeps 60% and you receive 40%, or you receive 60%. Each allows ₹2 a bottle for the bulk carton and has no Amazon fees. The volume table above uses the 40% reading.</dd>
+        <dt>Three-month plan</dt><dd>Monthly totals of 1,500, 4,500 and 10,000 bottles are a staging of your 10,000 goal, not a forecast. Amazon bottles are tied to what existing sellers move in each launch size; the rest is what distributors and shops would need to take. Profit is before ad spend, returns and your own time. Stock cost is the liquid, bottle, label and box for that month's bottles.</dd>
+        <dt>Decision</dt><dd>Launch: real demand at this size and a workable profit. Later: workable, but a smaller market or an open question. Hold: little demand at this size online, or no profit.</dd>
+        <dt>400 ml fill</dt><dd>Buyers compare it with 500 ml bottles, so it is priced about 20% below the 500 ml market price. Volume comparisons use the 500 ml size.</dd>
+      </dl>
+    </details>
+  </section>
+
+  <section class="ms-sec" id="revenue-split">
+    <div>
+      <h2 class="ms-h2">Where each file's raw revenue goes</h2>
+      <p class="ms-sub">Each bar is one Helium 10 export at its raw monthly revenue. Only the first segment is the market you would compete in.</p>
+    </div>
+    <ul class="ms-legend" id="split-legend">
+      <li><span class="ms-sw" data-i="0"></span>Core</li>
+      <li><span class="ms-sw" data-i="1"></span>Adjacent</li>
+      <li><span class="ms-sw" data-i="2"></span>Wrong audience</li>
+      <li><span class="ms-sw" data-i="3"></span>Wrong product</li>
+      <li><span class="ms-sw" data-i="4"></span>Repeat placements</li>
+    </ul>
+    <div class="ms-flow" id="split-chart" data-draw="flow" data-source="summary" role="img" aria-label="Stacked bars showing how each product file's raw monthly revenue splits into core, adjacent, wrong audience, wrong product and repeat placements">—</div>
+
+    <div class="ms-scroll">
+      <table class="ms-table" id="market-table" data-source="summary" data-row-key="market">
+        <thead>
+          <tr>
+            <th data-field="market">Market</th>
+            <th class="ms-r" data-field="rawRows">Raw rows</th>
+            <th class="ms-r" data-field="unique">Unique products</th>
+            <th class="ms-r" data-field="rawCr">Raw ₹ cr</th>
+            <th class="ms-r" data-field="duplicateCr">Repeats ₹ cr</th>
+            <th class="ms-r" data-field="productCr">Wrong product ₹ cr</th>
+            <th class="ms-r" data-field="audienceCr">Wrong audience ₹ cr</th>
+            <th class="ms-r" data-field="adjacentCr">Adjacent ₹ cr</th>
+            <th class="ms-r" data-field="coreCr">Core ₹ cr</th>
+            <th class="ms-r" data-field="coreSharePct">Core % of raw</th>
+            <th class="ms-r" data-field="coreListings">Core products</th>
+            <th class="ms-r" data-field="coreSelling">With sales</th>
+          </tr>
+        </thead>
+        <tbody data-draw="market-rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="ms-sec" id="market-detail">
+    <div>
+      <h2 class="ms-h2">Who sells what inside a market</h2>
+      <p class="ms-sub">Pick a market and a definition. Brand and pack-size shares are of monthly revenue.</p>
+    </div>
+    <div class="ms-controls">
+      <select class="dash-select" id="ms-market" aria-label="Market">
+        <option value="All markets">All markets</option>
+        <option>Virgin Coconut Oil</option>
+        <option>Castor Oil</option>
+        <option>Kalonji Oil</option>
+        <option>Neem Oil</option>
+        <option>Rose Water</option>
+        <option>Til (Sesame) Oil</option>
+        <option>Olive Oil</option>
+      </select>
+      <select class="dash-select" id="ms-scope" aria-label="Market definition">
+        <option value="Core">Core only</option>
+        <option value="Core + Adjacent">Core plus adjacent</option>
+      </select>
+    </div>
+    <div class="ms-panels">
+      <div class="ms-panel" id="brand-panel">
+        <h3 class="ms-panel-h">Top brands</h3>
+        <div class="ms-bars" data-draw="brands" data-source="brands">—</div>
+      </div>
+      <div class="ms-panel" id="size-panel">
+        <h3 class="ms-panel-h">Pack sizes</h3>
+        <div class="ms-bars" data-draw="sizes" data-source="sizes">—</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ms-sec" id="product-list">
+    <div>
+      <h2 class="ms-h2">Every product and how it was classified</h2>
+      <p class="ms-sub">Follows the market picked above. Use this to check any call you disagree with.</p>
+    </div>
+    <div class="ms-controls">
+      <select class="dash-select" id="ms-bucket" aria-label="Bucket">
+        <option value="">All buckets</option>
+        <option>Core</option>
+        <option>Adjacent</option>
+        <option>Wrong audience</option>
+        <option>Wrong product</option>
+      </select>
+      <input class="ms-search" id="ms-q" type="search" placeholder="Search product or brand" aria-label="Search product or brand">
+    </div>
+    <p class="ms-count">Showing <span class="ms-num" data-draw="shown">—</span> of <span class="ms-num" data-draw="matched">—</span> matching products, highest revenue first.</p>
+    <div class="ms-scroll">
+      <table class="ms-table" id="product-table" data-source="products" data-row-key="asin,market">
+        <thead>
+          <tr>
+            <th data-field="title">Product</th>
+            <th data-field="market">Market</th>
+            <th data-field="bucket">Bucket</th>
+            <th data-field="reason">Why</th>
+            <th data-field="packSize">Pack size</th>
+            <th class="ms-r" data-field="price">Price ₹</th>
+            <th class="ms-r" data-field="units">Units / month</th>
+            <th class="ms-r" data-field="revenue">Revenue ₹ / month</th>
+          </tr>
+        </thead>
+        <tbody data-draw="rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <details class="ms-notes" id="method-notes">
+    <summary>How products were sorted</summary>
+    <dl>
+      <dt>Revenue</dt><dd>Helium 10's estimate for each individual listing over a month. The parent-level column is not used, because it repeats a whole product family's total on every size variant.</dd>
+      <dt>Repeat placements</dt><dd>The same listing appearing twice in one file, once as a sponsored result and once as an organic one. Counted once. Different pack sizes of one product are separate listings and all stay.</dd>
+      <dt>Core</dt><dd>The pure, single-ingredient product for personal or food use. Olive oil covers pomace, extra light and extra virgin cooking oil. Rose water includes edible gulab jal. Sesame oil includes cooking and massage oil.</dd>
+      <dt>Adjacent</dt><dd>The same ingredient in another form: blends and combos, capsules, face wash, juice, medicated oil, cooking spray, or a toner with added actives such as niacinamide or aloe vera.</dd>
+      <dt>Wrong audience</dt><dd>The right ingredient sold for another use: neem oil for plants and pest control, puja and lamp oils, pet products.</dd>
+      <dt>Wrong product</dt><dd>Does not contain the searched ingredient at all, or is one of the other six products showing up in the wrong file. In the second case it is counted once, in its own market.</dd>
+      <dt>How it was decided</dt><dd>By keyword rules on the listing title and Amazon category, with the top sellers in each file read by hand. Low-revenue listings were not individually checked.</dd>
+    </dl>
+  </details>
+</div>
+
+<script>
+  const SERIES = [dash.colors[0], dash.colors[1], dash.colors[2], dash.colors[3], 'var(--cds-chart-muted)'];
+  const BUCKET_COLOR = {'Core': SERIES[0], 'Adjacent': SERIES[1], 'Wrong audience': SERIES[2], 'Wrong product': SERIES[3]};
+  const state = {market: 'All markets', scope: 'Core', bucket: '', q: ''};
+  const MAX_ROWS = 150;
+  const inr = (v) => Number(v).toLocaleString('en-IN');
+  const cr2 = (v) => Number(v).toFixed(2);
+  const enc = (v) => String(v).replace(/%/g, '%25').replace(/&/g, '%26').replace(/=/g, '%3D').replace(/,/g, '%2C');
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  const dashOut = (node) => node.replaceChildren('—');
+
+  document.querySelectorAll('.ms-sw').forEach((s) => { s.style.background = SERIES[+s.dataset.i]; });
+
+  dash.calc('summary', {
+    inputs: ['products'],
+    title: 'Revenue split by market',
+    description: 'Monthly revenue in ₹ crore for each product file, split by bucket, plus the revenue counted twice through repeat placements.',
+    fn: (products) => {
+      const cr = (v) => Math.round(v / 1e5) / 100;
+      const by = new Map();
+      for (const p of products) {
+        let m = by.get(p.market);
+        if (!m) by.set(p.market, m = {rawRows: 0, unique: 0, raw: 0, dedup: 0, core: 0, adjacent: 0, audience: 0, product: 0, coreListings: 0, coreSelling: 0});
+        const revenue = +p.revenue || 0, placements = +p.placements || 1;
+        m.rawRows += placements; m.unique += 1; m.raw += revenue * placements; m.dedup += revenue;
+        if (p.bucket === 'Core') { m.core += revenue; m.coreListings += 1; if (revenue > 0) m.coreSelling += 1; }
+        else if (p.bucket === 'Adjacent') m.adjacent += revenue;
+        else if (p.bucket === 'Wrong audience') m.audience += revenue;
+        else m.product += revenue;
+      }
+      return [...by].map(([market, m]) => ({
+        market, rawRows: m.rawRows, unique: m.unique, rawCr: cr(m.raw), duplicateCr: cr(m.raw - m.dedup),
+        productCr: cr(m.product), audienceCr: cr(m.audience), adjacentCr: cr(m.adjacent), coreCr: cr(m.core),
+        coreSharePct: m.raw ? Math.round(m.core / m.raw * 100) : 0, coreListings: m.coreListings, coreSelling: m.coreSelling,
+      })).sort((a, b) => b.coreCr - a.coreCr);
+    },
+  });
+
+  dash.calc('totals', {
+    inputs: ['products'],
+    title: 'Totals across all seven files',
+    description: 'Raw, de-duplicated and core monthly revenue in ₹ crore, with row and product counts.',
+    fn: (products) => {
+      const cr = (v) => Math.round(v / 1e5) / 100;
+      const small = ['50 ml or less', '100 ml', '150 ml', '200 ml', '250 ml', '300–400 ml', '500 ml'];
+      const t = {rawRows: 0, unique: 0, raw: 0, dedup: 0, core: 0, adjacent: 0, core500: 0, coreListings: 0, coreSelling: 0};
+      const filesByAsin = new Map();
+      for (const p of products) {
+        const revenue = +p.revenue || 0, placements = +p.placements || 1;
+        t.rawRows += placements; t.unique += 1; t.raw += revenue * placements; t.dedup += revenue;
+        filesByAsin.set(p.asin, (filesByAsin.get(p.asin) || 0) + 1);
+        if (p.bucket === 'Core') {
+          t.core += revenue; t.coreListings += 1; if (revenue > 0) t.coreSelling += 1;
+          if (small.includes(p.packSize)) t.core500 += revenue;
+        } else if (p.bucket === 'Adjacent') t.adjacent += revenue;
+      }
+      return [{
+        rawRows: t.rawRows, unique: t.unique, dupRows: t.rawRows - t.unique,
+        crossFile: [...filesByAsin.values()].filter((n) => n > 1).length,
+        rawCr: cr(t.raw), dedupCr: cr(t.dedup), coreCr: cr(t.core), coreAdjCr: cr(t.core + t.adjacent),
+        corePct: t.raw ? Math.round(t.core / t.raw * 100) : 0, core500Cr: cr(t.core500),
+        coreListings: t.coreListings, coreSelling: t.coreSelling,
+      }];
+    },
+  });
+
+  dash.calc('brands', {
+    inputs: ['products'],
+    title: 'Top brands by market',
+    description: 'The eight highest-revenue brands in each market, for core only and for core plus adjacent, in ₹ lakh a month with their share of that market.',
+    fn: (products) => {
+      const out = [];
+      const scopes = {'Core': ['Core'], 'Core + Adjacent': ['Core', 'Adjacent']};
+      const markets = ['All markets', ...new Set(products.map((p) => p.market))];
+      for (const market of markets) for (const scope in scopes) {
+        const rows = products.filter((p) => (market === 'All markets' || p.market === market) && scopes[scope].includes(p.bucket));
+        const total = rows.reduce((s, p) => s + (+p.revenue || 0), 0);
+        const by = new Map();
+        for (const p of rows) { const b = by.get(p.brand) || {revenue: 0, listings: 0}; b.revenue += +p.revenue || 0; b.listings += 1; by.set(p.brand, b); }
+        [...by].sort((a, b) => b[1].revenue - a[1].revenue).slice(0, 8).forEach(([brand, b]) => out.push({
+          key: market + '|' + scope + '|' + brand, market, scope, brand, listings: b.listings,
+          lakh: Math.round(b.revenue / 1e4) / 10, sharePct: total ? Math.round(b.revenue / total * 1000) / 10 : 0,
+        }));
+      }
+      return out;
+    },
+  });
+
+  dash.calc('sizes', {
+    inputs: ['products'],
+    title: 'Pack sizes by market',
+    description: 'Monthly revenue in ₹ lakh by pack-size band in each market, for core only and for core plus adjacent. Pack size is read from the listing title.',
+    fn: (products) => {
+      const out = [];
+      const bands = ['50 ml or less', '100 ml', '150 ml', '200 ml', '250 ml', '300–400 ml', '500 ml', '1 L', '2 L', '5 L and up', 'Unknown'];
+      const scopes = {'Core': ['Core'], 'Core + Adjacent': ['Core', 'Adjacent']};
+      const markets = ['All markets', ...new Set(products.map((p) => p.market))];
+      for (const market of markets) for (const scope in scopes) {
+        const rows = products.filter((p) => (market === 'All markets' || p.market === market) && scopes[scope].includes(p.bucket));
+        const total = rows.reduce((s, p) => s + (+p.revenue || 0), 0);
+        for (const packSize of bands) {
+          const inBand = rows.filter((p) => p.packSize === packSize);
+          const revenue = inBand.reduce((s, p) => s + (+p.revenue || 0), 0);
+          out.push({key: market + '|' + scope + '|' + packSize, market, scope, packSize, listings: inBand.length,
+            lakh: Math.round(revenue / 1e4) / 10, sharePct: total ? Math.round(revenue / total * 1000) / 10 : 0});
+        }
+      }
+      return out;
+    },
+  });
+
+  dash.calc('targets', {
+    inputs: ['economics', 'products'],
+    title: 'Monthly volume and profit scenarios',
+    description: 'For the products marked Launch: the bottles a month they would sell if each matched the median, tenth-best or fifth-best core seller in its size, and the profit at the planned profit per bottle. The last two rows are the 10,000-bottle goal at the average Amazon profit and the average distributor profit across launch products.',
+    fn: (economics, products) => {
+      const launch = economics.filter((e) => e.verdict === 'Launch');
+      const ranked = (e) => products.filter((p) => p.bucket === 'Core' && p.market === e.market && p.packSize === e.benchmark && +p.units > 0)
+        .map((p) => +p.units).sort((a, b) => b - a);
+      const pick = {
+        'A typical seller in its size (the median)': (u) => u.length ? u[Math.floor((u.length - 1) / 2)] : 0,
+        'The tenth-best seller in its size': (u) => u.length ? u[Math.min(9, u.length - 1)] : 0,
+        'The fifth-best seller in its size': (u) => u.length ? u[Math.min(4, u.length - 1)] : 0,
+      };
+      const rows = Object.entries(pick).map(([scenario, at]) => {
+        let bottles = 0, profit = 0;
+        for (const e of launch) { const n = at(ranked(e)); bottles += n; profit += n * e.profit; }
+        return {scenario, bottles, profit};
+      });
+      const average = launch.length ? launch.reduce((s, e) => s + e.profit, 0) / launch.length : 0;
+      rows.push({scenario: 'Your goal of 10,000 bottles, all sold on Amazon', bottles: 10000, profit: Math.round(10000 * average)});
+      const viaDistributor = launch.length ? launch.reduce((s, e) => s + e.distributorProfit, 0) / launch.length : 0;
+      rows.push({scenario: 'Your goal of 10,000 bottles, all through distributors (you receive 40% of MRP)', bottles: 10000, profit: Math.round(10000 * viaDistributor)});
+      return rows;
+    },
+  });
+
+  const VERDICT_COLOR = {'Launch': 'var(--color-ok)', 'Later': 'var(--color-warn)', 'Hold': 'var(--cds-chart-muted)'};
+  dash.draw('econ-rows', (body) => {
+    const d = dash.data('economics');
+    if (d.status !== 'ok' || !Array.isArray(d.data)) return body.replaceChildren();
+    body.replaceChildren(...d.data.map((r) => {
+      const tr = el('tr'); tr.dataset.key = enc(r.sku);
+      const pill = el('span', 'ms-pill'); const sw = el('span', 'ms-sw'); sw.style.background = VERDICT_COLOR[r.verdict] || SERIES[4];
+      pill.append(sw, r.verdict);
+      const verdict = el('td'); verdict.append(pill);
+      const profit = el('td', 'ms-r ms-strong', inr(r.profit));
+      if (+r.profit < 0) profit.style.color = 'var(--color-bad)';
+      const dist = el('td', 'ms-r', inr(r.distributorProfit));
+      if (+r.distributorProfit < 0) dist.style.color = 'var(--color-bad)';
+      tr.append(el('td', 'ms-strong', r.sku), verdict, el('td', 'ms-r', r.shopPrice === '' || r.shopPrice == null ? '—' : inr(r.shopPrice)),
+        el('td', 'ms-r', inr(r.mrp)), el('td', null, r.mrpStatus), el('td', 'ms-r ms-strong', inr(r.price)), el('td', 'ms-r', inr(r.gst)),
+        el('td', 'ms-r', inr(r.liquid)), el('td', 'ms-r', inr(r.packaging)), el('td', 'ms-r', inr(r.fees)), profit,
+        el('td', 'ms-r', r.marginPct + '%'), dist, el('td', 'ms-r', inr(r.distributorProfit60)), el('td', 'ms-why', r.why));
+      return tr;
+    }));
+  });
+
+  dash.draw('ramp-rows', (body) => {
+    const d = dash.data('ramp');
+    if (d.status !== 'ok' || !Array.isArray(d.data)) return body.replaceChildren();
+    body.replaceChildren(...d.data.map((r) => {
+      const tr = el('tr'); tr.dataset.key = enc(r.month);
+      tr.append(el('td', 'ms-strong', r.month), el('td', 'ms-r ms-strong', inr(r.target)), el('td', 'ms-why', r.amazonBasis),
+        el('td', 'ms-r', inr(r.amazonBottles)), el('td', 'ms-r', inr(r.amazonProfit)), el('td', 'ms-r', inr(r.distributorBottles)),
+        el('td', 'ms-r ms-strong', inr(r.totalProfit40)), el('td', 'ms-r ms-strong', inr(r.totalProfit60)), el('td', 'ms-r', inr(r.stockCost)));
+      return tr;
+    }));
+  });
+
+  dash.draw('target-rows', (body) => {
+    const d = dash.data('targets');
+    if (d.status !== 'ok' || !Array.isArray(d.data)) return body.replaceChildren();
+    body.replaceChildren(...d.data.map((r) => {
+      const tr = el('tr'); tr.dataset.key = enc(r.scenario);
+      tr.append(el('td', 'ms-strong', r.scenario), el('td', 'ms-r', inr(r.bottles)), el('td', 'ms-r ms-strong', inr(r.profit)));
+      return tr;
+    }));
+  });
+
+  dash.draw('fig', (node) => {
+    const t = dash.data('totals');
+    const row = t.status === 'ok' && t.data && t.data[0];
+    if (!row) return dashOut(node);
+    const v = row[node.dataset.field];
+    node.textContent = node.dataset.fmt === 'cr' ? cr2(v) : inr(v);
+  });
+
+  dash.draw('flow', (node) => {
+    const s = dash.data('summary');
+    if (s.status !== 'ok' || !s.data || !s.data.length) return dashOut(node);
+    const rows = [...s.data].sort((a, b) => b.rawCr - a.rawCr);
+    const max = d3.max(rows, (r) => r.rawCr) || 1;
+    const parts = [['Core', 'coreCr'], ['Adjacent', 'adjacentCr'], ['Wrong audience', 'audienceCr'], ['Wrong product', 'productCr'], ['Repeat placements', 'duplicateCr']];
+    const tip = el('div', 'ms-tip'); tip.hidden = true;
+    const show = (seg, r, name, v) => {
+      tip.replaceChildren(el('b', null, r.market), document.createElement('br'), el('span', null, name + ': '), '₹' + cr2(v) + ' cr', el('span', null, ' · ' + Math.round(v / r.rawCr * 100) + '% of raw'));
+      tip.hidden = false;
+      const box = node.getBoundingClientRect(), b = seg.getBoundingClientRect();
+      const left = Math.min(Math.max(0, b.left - box.left + b.width / 2 - tip.offsetWidth / 2), box.width - tip.offsetWidth);
+      tip.style.left = left + 'px';
+      tip.style.top = (b.top - box.top - tip.offsetHeight - 6 < 0 ? b.bottom - box.top + 6 : b.top - box.top - tip.offsetHeight - 6) + 'px';
+    };
+    const out = rows.map((r) => {
+      const row = el('div', 'ms-flow-row');
+      const track = el('div', 'ms-flow-track');
+      parts.forEach(([name, field], i) => {
+        const v = r[field];
+        if (!(v > 0)) return;
+        const seg = el('button', 'ms-flow-seg');
+        seg.type = 'button';
+        seg.style.width = (v / max * 100) + '%';
+        seg.style.background = SERIES[i];
+        seg.setAttribute('aria-label', r.market + ', ' + name + ': ₹' + cr2(v) + ' crore');
+        seg.onmouseenter = seg.onfocus = seg.onclick = () => show(seg, r, name, v);
+        seg.onmouseleave = seg.onblur = () => { tip.hidden = true; };
+        track.append(seg);
+      });
+      const total = el('span', 'ms-flow-total', '₹' + cr2(r.rawCr) + ' cr');
+      row.append(el('span', 'ms-flow-name', r.market), track, total);
+      return row;
+    });
+    node.replaceChildren(...out, tip);
+  });
+
+  dash.draw('market-rows', (body) => {
+    const s = dash.data('summary');
+    if (s.status !== 'ok' || !s.data) return body.replaceChildren();
+    body.replaceChildren(...s.data.map((r) => {
+      const tr = el('tr'); tr.dataset.key = enc(r.market);
+      tr.append(el('td', 'ms-strong', r.market), el('td', 'ms-r', inr(r.rawRows)), el('td', 'ms-r', inr(r.unique)),
+        el('td', 'ms-r', cr2(r.rawCr)), el('td', 'ms-r', cr2(r.duplicateCr)), el('td', 'ms-r', cr2(r.productCr)),
+        el('td', 'ms-r', cr2(r.audienceCr)), el('td', 'ms-r', cr2(r.adjacentCr)), el('td', 'ms-r ms-strong', cr2(r.coreCr)),
+        el('td', 'ms-r', r.coreSharePct + '%'), el('td', 'ms-r', inr(r.coreListings)), el('td', 'ms-r', inr(r.coreSelling)));
+      return tr;
+    }));
+  });
+
+  const bars = (id, labelField, color) => (node) => {
+    const d = dash.data(id);
+    if (d.status !== 'ok' || !d.data) return dashOut(node);
+    const rows = d.data.filter((r) => r.market === state.market && r.scope === state.scope && (r.lakh > 0 || labelField === 'brand'));
+    if (!rows.length || !rows.some((r) => r.lakh > 0)) return node.replaceChildren(el('span', 'ms-empty', 'No sales recorded for this selection.'));
+    const max = d3.max(rows, (r) => r.sharePct) || 1;
+    node.replaceChildren(...rows.filter((r) => r.lakh > 0).map((r) => {
+      const row = el('div', 'ms-bar');
+      const val = el('span', 'ms-bar-val');
+      const lakh = el('span', null, r.lakh.toFixed(1)); lakh.dataset.source = id; lakh.dataset.field = 'lakh'; lakh.dataset.where = 'key=' + enc(r.key);
+      const pct = el('span', null, r.sharePct.toFixed(1)); pct.dataset.source = id; pct.dataset.field = 'sharePct'; pct.dataset.where = 'key=' + enc(r.key);
+      val.append('₹', lakh, ' L · ', pct, '%');
+      const track = el('div', 'ms-bar-track'), fill = el('div', 'ms-bar-fill');
+      fill.style.width = (r.sharePct / max * 100) + '%'; fill.style.background = color;
+      track.append(fill);
+      const name = el('span', 'ms-bar-name', r[labelField]); name.title = r[labelField];
+      row.append(name, val, track);
+      return row;
+    }));
+  };
+  dash.draw('brands', bars('brands', 'brand', SERIES[0]));
+  dash.draw('sizes', bars('sizes', 'packSize', SERIES[1]));
+
+  const matching = () => {
+    const p = dash.data('products');
+    if (p.status !== 'ok' || !Array.isArray(p.data)) return null;
+    const q = state.q.trim().toLowerCase();
+    return p.data.filter((r) => (state.market === 'All markets' || r.market === state.market)
+      && (!state.bucket || r.bucket === state.bucket)
+      && (!q || (r.title + ' ' + r.brand).toLowerCase().includes(q)))
+      .sort((a, b) => (+b.revenue || 0) - (+a.revenue || 0));
+  };
+
+  dash.draw('rows', (body) => {
+    const rows = matching();
+    if (!rows) return body.replaceChildren();
+    body.replaceChildren(...rows.slice(0, MAX_ROWS).map((r) => {
+      const tr = el('tr'); tr.dataset.key = enc(r.asin) + ',' + enc(r.market);
+      const prod = el('td', 'ms-prod');
+      const title = el('span', 'ms-prod-title');
+      if (typeof r.url === 'string' && r.url.startsWith('https://www.amazon.in/')) {
+        const a = el('a', null, r.title); a.href = r.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; title.append(a);
+      } else title.textContent = r.title;
+      prod.append(title, el('span', 'ms-prod-brand', r.brand + (r.sponsored === 'Yes' ? ' · advertised' : '')));
+      const pill = el('span', 'ms-pill'); const sw = el('span', 'ms-sw'); sw.style.background = BUCKET_COLOR[r.bucket] || SERIES[4];
+      pill.append(sw, r.bucket);
+      const bucket = el('td'); bucket.append(pill);
+      tr.append(prod, el('td', null, r.market), bucket, el('td', 'ms-why', r.reason), el('td', null, r.packSize),
+        el('td', 'ms-r', +r.price ? inr(r.price) : '—'), el('td', 'ms-r', inr(+r.units || 0)), el('td', 'ms-r ms-strong', inr(+r.revenue || 0)));
+      return tr;
+    }));
+  });
+  dash.draw('matched', (node) => { const rows = matching(); node.textContent = rows ? inr(rows.length) : '—'; });
+  dash.draw('shown', (node) => { const rows = matching(); node.textContent = rows ? inr(Math.min(rows.length, MAX_ROWS)) : '—'; });
+
+  const redrawList = () => { dash.draw('rows'); dash.draw('matched'); dash.draw('shown'); };
+  const bind = (id, key, also) => document.querySelectorAll('#' + id).forEach((c) => {
+    c.addEventListener(c.tagName === 'INPUT' ? 'input' : 'change', () => { state[key] = c.value; also(); });
+  });
+  bind('ms-market', 'market', () => { dash.draw('brands'); dash.draw('sizes'); redrawList(); });
+  bind('ms-scope', 'scope', () => { dash.draw('brands'); dash.draw('sizes'); });
+  bind('ms-bucket', 'bucket', redrawList);
+  bind('ms-q', 'q', redrawList);
+</script>
