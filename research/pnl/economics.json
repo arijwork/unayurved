@@ -18,7 +18,8 @@
   "distributorProfit60": 99,
   "priceAtShopMrp": "",
   "verdict": "Launch",
-  "why": "The main kalonji size (56% of revenue). Just under Caraway Rs 375 and Hesthetic Rs 399; cheap listings earn little here."
+  "why": "The main kalonji size (56% of revenue). Just under Caraway Rs 375 and Hesthetic Rs 399; cheap listings earn little here.",
+  "holdReason": ""
  },
  {
   "sku": "Rose Water 200 ml",
@@ -39,7 +40,8 @@
   "distributorProfit60": 133,
   "priceAtShopMrp": 61,
   "verdict": "Launch",
-  "why": "Largest rose water size (47% of core revenue). Best sellers: WishCare Rs 345, Vitro Rs 283, UrbanBotanics Rs 279."
+  "why": "Largest rose water size (47% of core revenue). Best sellers: WishCare Rs 345, Vitro Rs 283, UrbanBotanics Rs 279.",
+  "holdReason": ""
  },
  {
   "sku": "Neem Oil 200 ml",
@@ -60,7 +62,8 @@
   "distributorProfit60": 127,
   "priceAtShopMrp": "",
   "verdict": "Launch",
-  "why": "Half of a small market. Sits between Nat Habit Rs 349 and Rey Naturals Rs 219."
+  "why": "Half of a small market. Sits between Nat Habit Rs 349 and Rey Naturals Rs 219.",
+  "holdReason": ""
  },
  {
   "sku": "Kalonji Oil 200 ml",
@@ -81,7 +84,8 @@
   "distributorProfit60": 78,
   "priceAtShopMrp": "",
   "verdict": "Launch",
-  "why": "12% of revenue. UrbanBotanics leads at Rs 390; the 250 ml leaders charge Rs 645 to 799, so there is room above Rs 390."
+  "why": "12% of revenue. UrbanBotanics leads at Rs 390; the 250 ml leaders charge Rs 645 to 799, so there is room above Rs 390.",
+  "holdReason": ""
  },
  {
   "sku": "Rose Water 100 ml",
@@ -102,7 +106,8 @@
   "distributorProfit60": 99,
   "priceAtShopMrp": 1,
   "verdict": "Launch",
-  "why": "Second size (20% of revenue). Matches the best seller, Nat Habit at Rs 201."
+  "why": "Second size (20% of revenue). Matches the best seller, Nat Habit at Rs 201.",
+  "holdReason": ""
  },
  {
   "sku": "Virgin Coconut Oil 400 ml",
@@ -123,7 +128,8 @@
   "distributorProfit60": 90,
   "priceAtShopMrp": "",
   "verdict": "Launch",
-  "why": "The 500 ml size is 47% of revenue at Rs 418 to 467. A 400 ml fill must be priced about 20% lower to compare fairly per ml."
+  "why": "The 500 ml size is 47% of revenue at Rs 418 to 467. A 400 ml fill must be priced about 20% lower to compare fairly per ml.",
+  "holdReason": ""
  },
  {
   "sku": "Castor Oil 200 ml",
@@ -144,7 +150,8 @@
   "distributorProfit60": 85,
   "priceAtShopMrp": "",
   "verdict": "Launch",
-  "why": "The castor market (56% of revenue). Dabur Rs 164, WishCare Rs 199, Rey Naturals Rs 229, Nat Habit Rs 319."
+  "why": "The castor market (56% of revenue). Dabur Rs 164, WishCare Rs 199, Rey Naturals Rs 229, Nat Habit Rs 319.",
+  "holdReason": ""
  },
  {
   "sku": "Virgin Coconut Oil 200 ml",
@@ -165,7 +172,8 @@
   "distributorProfit60": 59,
   "priceAtShopMrp": "",
   "verdict": "Launch",
-  "why": "200 to 250 ml is 28% of revenue. Kapiva 250 ml sells at Rs 249, so 200 ml belongs near Rs 219."
+  "why": "200 to 250 ml is 28% of revenue. Kapiva 250 ml sells at Rs 249, so 200 ml belongs near Rs 219.",
+  "holdReason": ""
  },
  {
   "sku": "Castor Oil 100 ml",
@@ -186,7 +194,8 @@
   "distributorProfit60": 57,
   "priceAtShopMrp": "",
   "verdict": "Launch",
-  "why": "Trial size with 17% of units. Khadi Rs 130, Soulflower Rs 199."
+  "why": "Trial size with 17% of units. Khadi Rs 130, Soulflower Rs 199.",
+  "holdReason": ""
  },
  {
   "sku": "Til (Sesame) Oil 200 ml (non-edible grade)",
@@ -207,7 +216,8 @@
   "distributorProfit60": 123,
   "priceAtShopMrp": "",
   "verdict": "Later",
-  "why": "Same massage oil made with the Rs 220 a litre non-edible grade. Cannot be sold or labelled as food."
+  "why": "Same massage oil made with the Rs 220 a litre non-edible grade. Cannot be sold or labelled as food.",
+  "holdReason": ""
  },
  {
   "sku": "Castor Oil 400 ml",
@@ -228,7 +238,8 @@
   "distributorProfit60": 109,
   "priceAtShopMrp": "",
   "verdict": "Later",
-  "why": "500 ml is 13% of revenue; Phalada sells it at Rs 233, so a 400 ml fill has to stay at or under Rs 299."
+  "why": "500 ml is 13% of revenue; Phalada sells it at Rs 233, so a 400 ml fill has to stay at or under Rs 299.",
+  "holdReason": ""
  },
  {
   "sku": "Til (Sesame) Oil 200 ml",
@@ -249,7 +260,8 @@
   "distributorProfit60": 99,
   "priceAtShopMrp": "",
   "verdict": "Later",
-  "why": "Sells only as a massage and body oil (3.5% of revenue). Nat Habit Rs 269, Goodcare Rs 214. Decide the positioning first."
+  "why": "Sells only as a massage and body oil (3.5% of revenue). Nat Habit Rs 269, Goodcare Rs 214. Decide the positioning first.",
+  "holdReason": ""
  },
  {
   "sku": "Neem Oil 100 ml",
@@ -270,7 +282,8 @@
   "distributorProfit60": 58,
   "priceAtShopMrp": "",
   "verdict": "Later",
-  "why": "Only 10% of neem revenue. Goodcare leads at Rs 189. Priced at your current MRP of Rs 159. Add once the 200 ml sells."
+  "why": "Only 10% of neem revenue. Goodcare leads at Rs 189. Priced at your current MRP of Rs 159. Add once the 200 ml sells.",
+  "holdReason": ""
  },
  {
   "sku": "Kalonji Oil 400 ml",
@@ -291,7 +304,8 @@
   "distributorProfit60": 106,
   "priceAtShopMrp": "",
   "verdict": "Hold",
-  "why": "Almost nobody buys kalonji at this size online (0.2% of revenue at 500 ml), and it ties up the most cash per bottle."
+  "why": "Almost nobody buys kalonji at this size online (0.2% of revenue at 500 ml), and it ties up the most cash per bottle.",
+  "holdReason": "demand"
  },
  {
   "sku": "Neem Oil 400 ml",
@@ -312,7 +326,8 @@
   "distributorProfit60": 113,
   "priceAtShopMrp": "",
   "verdict": "Hold",
-  "why": "One seller at 500 ml (Veda Oils Rs 242) and 4% of revenue. No real demand."
+  "why": "One seller at 500 ml (Veda Oils Rs 242) and 4% of revenue. No real demand.",
+  "holdReason": "demand"
  },
  {
   "sku": "Rose Water 400 ml",
@@ -333,7 +348,8 @@
   "distributorProfit60": 76,
   "priceAtShopMrp": "",
   "verdict": "Hold",
-  "why": "Large rose water sells very cheaply: Dabur 400 ml is under Rs 100 a bottle in multipacks. Little demand at a paying price."
+  "why": "Large rose water sells very cheaply: Dabur 400 ml is under Rs 100 a bottle in multipacks. Little demand at a paying price.",
+  "holdReason": "demand"
  },
  {
   "sku": "Olive Oil 400 ml",
@@ -354,7 +370,8 @@
   "distributorProfit60": 94,
   "priceAtShopMrp": "",
   "verdict": "Hold",
-  "why": "Pomace olive oil is bought in 1 L to 5 L packs; 500 ml and below is 0.5% of revenue. Better through distributors."
+  "why": "Pomace olive oil is bought in 1 L to 5 L packs; 500 ml and below is 0.5% of revenue. Better through distributors.",
+  "holdReason": "demand"
  },
  {
   "sku": "Olive Oil 200 ml",
@@ -375,7 +392,8 @@
   "distributorProfit60": 66,
   "priceAtShopMrp": "",
   "verdict": "Hold",
-  "why": "No online market for pomace at this size."
+  "why": "No online market for pomace at this size.",
+  "holdReason": "demand"
  },
  {
   "sku": "Til (Sesame) Oil 100 ml",
@@ -396,7 +414,8 @@
   "distributorProfit60": 44,
   "priceAtShopMrp": "",
   "verdict": "Hold",
-  "why": "No market at this size (0.5% of revenue)."
+  "why": "No market at this size (0.5% of revenue).",
+  "holdReason": "profit"
  },
  {
   "sku": "Olive Oil 100 ml",
@@ -417,7 +436,8 @@
   "distributorProfit60": 76,
   "priceAtShopMrp": "",
   "verdict": "Hold",
-  "why": "No online market for pomace at this size."
+  "why": "No online market for pomace at this size.",
+  "holdReason": "profit"
  },
  {
   "sku": "Virgin Coconut Oil 100 ml",
@@ -438,7 +458,8 @@
   "distributorProfit60": 41,
   "priceAtShopMrp": "",
   "verdict": "Hold",
-  "why": "Under 1% of coconut revenue. Not worth a listing."
+  "why": "Under 1% of coconut revenue. Not worth a listing.",
+  "holdReason": "profit"
  },
  {
   "sku": "Til (Sesame) Oil 400 ml",
@@ -459,6 +480,7 @@
   "distributorProfit60": 10,
   "priceAtShopMrp": "",
   "verdict": "Hold",
-  "why": "Cooking size. Idhayam 500 ml sells at Rs 285 and Patanjali at Rs 140, so 400 ml cannot go above about Rs 229."
+  "why": "Cooking size. Idhayam 500 ml sells at Rs 285 and Patanjali at Rs 140, so 400 ml cannot go above about Rs 229.",
+  "holdReason": "profit"
  }
 ]

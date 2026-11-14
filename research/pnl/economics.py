@@ -100,6 +100,8 @@ for market in ORDER:
             u = unit(market, bottle, price, OIL['Til (Sesame) Oil, non-edible'])
             rows.append(dict(sku=f'{market} {bottle} (non-edible grade)', market=market, fill=bottle, benchmark=bottle, price=price, **u, **mrp_fields(market, bottle, price, OIL['Til (Sesame) Oil, non-edible']), verdict='Later',
                              why='Same massage oil made with the Rs 220 a litre non-edible grade. Cannot be sold or labelled as food.'))
+for r in rows:   # a product held only because it does not pay can come back if costs fall; one held for lack of demand cannot
+    r['holdReason'] = '' if r['verdict'] != 'Hold' else ('profit' if r['profit'] < 25 else 'demand')
 rank = {'Launch': 0, 'Later': 1, 'Hold': 2}
 rows.sort(key=lambda r: (rank[r['verdict']], -r['profit']))
 json.dump(rows, open(os.path.join(HERE, 'economics.json'), 'w'), ensure_ascii=False, indent=1)
